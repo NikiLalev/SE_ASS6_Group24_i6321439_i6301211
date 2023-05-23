@@ -6,17 +6,28 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import jakarta.servlet.http.HttpServletRequest;
-
-//import javax.servelt.http.HttpServletRequest;
-//import javax.servlet.*;
+import javax.servlet.http.HttpServletRequest;
 import java.util.Enumeration;
 
+/**
+ * Make sure to include the necessary dependencies in your pom.xml file for the
+ * Spring Boot and Spring Web projects:
+ * 
+ * 
+ * <dependencies>
+ * <dependency>
+ * <groupId>org.springframework.boot</groupId>
+ * <artifactId>spring-boot-starter-web</artifactId>
+ * </dependency>
+ * </dependencies>
+ * 
+ */
 
 @SpringBootApplication
 public class ApiGatewayApplication {
