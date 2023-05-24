@@ -1,4 +1,4 @@
-package com.book.demo;
+package com.book.demo.BookModel;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
