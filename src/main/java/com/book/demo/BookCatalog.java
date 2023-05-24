@@ -7,5 +7,5 @@ import org.springframework.web.bind.annotation.RestController;
 
 public class BookCatalog {
     
-    private 
+    private final BookRepository bookRepo;
 }
