@@ -68,12 +68,7 @@ class ApiController {
     public ResponseEntity<String> catalogService(HttpServletRequest request) {
         return proxyRequest(request, BOOK_CATALOG_SERVICE);
     }
-    
 
-    @GetMapping("/hello")
-    public String hello() {
-        return "Hello, world";
-    }
 
     @RequestMapping(value = "/inventory/{path:.+}", method = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT,
             RequestMethod.DELETE })
