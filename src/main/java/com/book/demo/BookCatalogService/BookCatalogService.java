@@ -1,11 +1,10 @@
-package com.book.demo.Services;
+package com.book.demo.BookCatalogService;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-import com.book.demo.Model.Book;
 
 import lombok.Getter;
 import lombok.Setter;

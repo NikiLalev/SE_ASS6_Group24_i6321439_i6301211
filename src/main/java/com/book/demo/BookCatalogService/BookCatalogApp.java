@@ -1,4 +1,4 @@
-package com.book.demo;
+package com.book.demo.BookCatalogService;
 
 import java.util.Collections;
 

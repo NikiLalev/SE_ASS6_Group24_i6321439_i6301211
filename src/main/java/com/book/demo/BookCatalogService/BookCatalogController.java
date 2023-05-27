@@ -1,4 +1,4 @@
-package com.book.demo.Controllers;
+package com.book.demo.BookCatalogService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.book.demo.Model.Book;
-import com.book.demo.Services.BookCatalogService;
-import com.book.demo.Services.BookInvetoryService;
+import com.book.demo.BookInventoryService.BookInvetoryService;
 
 @RestController
 @RequestMapping("/catalog")

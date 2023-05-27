@@ -1,4 +1,4 @@
-package com.book.demo.Model;
+package com.book.demo.BookCatalogService;
 
 
 import javax.persistence.GenerationType;

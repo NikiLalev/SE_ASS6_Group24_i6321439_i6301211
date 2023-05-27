@@ -1,4 +1,4 @@
-package com.book.demo.Controllers;
+package com.book.demo.BookInventoryService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.book.demo.Services.BookInvetoryService;
 
 @RestController
 @RequestMapping("/inventory")
