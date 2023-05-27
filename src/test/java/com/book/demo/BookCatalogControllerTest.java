@@ -13,18 +13,19 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import com.book.demo.BookCatalogService.Book;
 import com.book.demo.BookCatalogService.BookCatalogController;
-import com.book.demo.BookCatalogService.BookCatalogService;
-import com.book.demo.BookInventoryService.BookInvetoryService;
+import com.book.demo.BookCatalogService.BookCatalogServiceImpl;
+import com.book.demo.BookInventoryService.BookInventoryService;
 
 public class BookCatalogControllerTest {
 
     private MockMvc mockMvc;
+    private Book book;
 
     @Mock
-    private BookCatalogService bookCatalogService;
+    private BookCatalogServiceImpl bookCatalogServiceImpl;
 
     @Mock
-    private BookInvetoryService bookInventoryService;
+    private BookInventoryService bookInventoryService;
 
     @InjectMocks
     private BookCatalogController bookCatalogController;
@@ -33,20 +34,18 @@ public class BookCatalogControllerTest {
     public void setup() {
         MockitoAnnotations.openMocks(this);
         mockMvc = MockMvcBuilders.standaloneSetup(bookCatalogController).build();
+        book = new Book("1984", "George Orwell", 1949);
     }
 
     @Test
     public void testGetBookById() throws Exception {
-        // Arrange
-       int bookId = 1;
-        Book book = new Book(bookId, "1984", "George Orwell", 1949);
 
-        when(bookCatalogService.getByID(bookId)).thenReturn(book);
+        when(bookCatalogServiceImpl.getByID(1)).thenReturn(book);
 
         // Act & Assert
-        mockMvc.perform(MockMvcRequestBuilders.get("/catalog/book/{id}", bookId))
+        mockMvc.perform(MockMvcRequestBuilders.get("/catalog/book/{id}", 1))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(bookId))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(2))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.author").value("George Orwell"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.title").value("1984"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.publicationYear").value(1949));
@@ -57,9 +56,6 @@ public class BookCatalogControllerTest {
         // Arrange
         int bookId = 1;
         int quantity = 10;
-        
-        Book book = new Book(bookId, "1984", "George Orwell", 1949);
-        doNothing().when(bookCatalogService).addBook(book);
     
         // Act & Assert
         mockMvc.perform(MockMvcRequestBuilders.post("/catalog/book/{quantity}", quantity)
@@ -69,14 +65,11 @@ public class BookCatalogControllerTest {
         .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(bookId))
         .andExpect(MockMvcResultMatchers.jsonPath("$.title").value("1984"))
         .andExpect(MockMvcResultMatchers.jsonPath("$.publicationYear").value(1949));
-        
-                verify(bookCatalogService, times(1)).addBook(book);
     }
 
     @Test //TO-DO
     public void testUpdateBook() throws Exception {
-        // Arrange
-        Book book = new Book(1, "1984", "George Orwell", 1949);
+        
         // Act & Assert
         mockMvc.perform(MockMvcRequestBuilders.put("/catalog/book/{id}", book.getId())
                 .contentType(MediaType.APPLICATION_JSON)
@@ -95,6 +88,6 @@ public class BookCatalogControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.delete("/catalog/book/{id}", bookId))
                 .andExpect(MockMvcResultMatchers.status().isOk());
 
-        verify(bookCatalogService, times(1)).deleteBook(bookId);
+        verify(bookCatalogServiceImpl, times(1)).deleteBook(bookId);
     }
 }

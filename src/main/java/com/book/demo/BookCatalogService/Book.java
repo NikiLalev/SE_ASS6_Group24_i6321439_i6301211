@@ -1,24 +1,24 @@
 package com.book.demo.BookCatalogService;
 
-
-import javax.persistence.GenerationType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Getter
-@NoArgsConstructor
 @ToString
-@AllArgsConstructor
-public class Book {
+@NoArgsConstructor
 
-    
-    private @Id @GeneratedValue(strategy = GenerationType.AUTO) int id;
+public class Book {
+    private static int counter = 0;
+    private int id;
     private String title;
     private String author;
     private int publicationYear;
+
+    public Book(String title, String author, int publicationYear) {
+        this.id = ++counter;
+        this.title = title;
+        this.author = author;
+        this.publicationYear = publicationYear;
+    }
 }

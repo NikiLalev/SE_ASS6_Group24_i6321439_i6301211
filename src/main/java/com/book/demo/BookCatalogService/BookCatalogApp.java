@@ -9,8 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class BookCatalogApp {
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(BookCatalogApp.class);
-        app.setDefaultProperties(Collections
-          .singletonMap("server.port", "3001"));
+        app.setDefaultProperties(Collections.singletonMap("server.port", "3001"));
         app.run(args);
     }
 }

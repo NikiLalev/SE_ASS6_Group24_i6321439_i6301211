@@ -1,22 +1,19 @@
 package com.book.demo.BookInventoryService;
 
 import java.util.HashMap;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.book.demo.BookCatalogService.BookCatalogService;
-
+import com.book.demo.BookCatalogService.BookCatalogServiceImpl;
 
 @Service
-public class BookInvetoryService {
+public class BookInventoryService {
 
     private HashMap<Integer, Integer> idToQuantityMap;
     
     @Autowired
-    BookCatalogService bookCatalogService;
+    BookCatalogServiceImpl bookCatalogService;
 
-    public BookInvetoryService() {
+    public BookInventoryService() {
         idToQuantityMap = new HashMap<Integer, Integer>();
     }
     

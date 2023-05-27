@@ -14,22 +14,22 @@ import org.springframework.web.bind.annotation.RestController;
 public class BookInventoryController {
  
     @Autowired
-    BookInvetoryService bookInvetoryService;
+    BookInventoryService bookInventoryService;
 
     @GetMapping("/book/{id}")
     public int getQuantityByID(@PathVariable("id") int id) {
-        int quantity = bookInvetoryService.getQuantityByID(id);
+        int quantity = bookInventoryService.getQuantityByID(id);
         return quantity;
     }
 
     @PostMapping("/book/{id}")
     public void setQuantityByID(@RequestBody int quantity, @PathVariable("id") int id) {
-        bookInvetoryService.setQuantityByID(id, quantity);
+        bookInventoryService.setQuantityByID(id, quantity);
     }
 
     @PutMapping("/book/{id}")
     public void updateQuantityByID(@RequestBody int quantity, @PathVariable("id") int id) {
-        bookInvetoryService.updateQuantityByID(id, quantity);
+        bookInventoryService.updateQuantityByID(id, quantity);
     }
 
 

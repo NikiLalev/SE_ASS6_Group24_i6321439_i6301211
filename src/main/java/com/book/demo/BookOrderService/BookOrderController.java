@@ -15,5 +15,6 @@ public class BookOrderController {
     @PostMapping("/book")
     public void addOrderBookID(@RequestBody Order order) {
         bookOrderService.sendOrder(order);
+        //update quantity through book inventory
     }
 }
