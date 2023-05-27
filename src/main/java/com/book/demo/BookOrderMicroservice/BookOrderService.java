@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.book.demo.BookCatalogMicroservice.BookCatalogServiceImpl;
-import com.book.demo.BookInventoryMicroservice.BookInventoryService;
+import com.book.demo.BookInventoryMicroservice.BookInventoryServiceImpl;
 
 @Service
 public class BookOrderService {
@@ -13,11 +13,11 @@ public class BookOrderService {
 
     @Autowired
     BookCatalogServiceImpl bookCatalogService;
-    BookInventoryService bookInvetoryService;
+    BookInventoryServiceImpl bookInvetoryService;
 
     public void sendOrder(Order order) {
-        if(bookCatalogService.getByID(order.getBookId()) != null &&
-            bookInvetoryService.getQuantityByID(order.getBookId()) <= order.getQuantity()) {
+        if(bookCatalogService.getById(order.getBookId()) != null &&
+            bookInvetoryService.getQuantityById(order.getBookId()) <= order.getQuantity()) {
                 orderList.add(order);
            }    
     }

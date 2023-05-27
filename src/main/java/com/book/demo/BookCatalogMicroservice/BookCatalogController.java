@@ -36,6 +36,11 @@ public class BookCatalogController {
         return book;
     }
 
+    /**
+     * Post mapping for adding a book to the catalog of books
+     * @param json 
+     * @return
+     */
    @PostMapping("/book")
    public Book createBook(@RequestBody ObjectNode json) {
      String title = json.get("title").asText();
@@ -60,9 +65,12 @@ public class BookCatalogController {
    public Book updateBook(@RequestBody Book book, @PathVariable("id") int id) {
         if(bookCatalogService.updateBook(book, id)) {
           return book;
-        } else {
-          throw new IllegalArgumentException("Please try again");
-        }
+        } 
+        return book;
+
+     //    else {
+     //      throw new IllegalArgumentException("Please try again");
+     //    }
    }
 
    @DeleteMapping("/book/{id}")
