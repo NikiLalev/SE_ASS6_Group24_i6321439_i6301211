@@ -1,4 +1,4 @@
-package com.book.demo.BookInventoryService;
+package com.book.demo.BookInventoryMicroservice;
 
 import java.util.Collections;
 import org.springframework.boot.SpringApplication;

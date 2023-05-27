@@ -1,10 +1,11 @@
-package com.book.demo.BookOrderService;
+package com.book.demo.BookOrderMicroservice;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.book.demo.BookCatalogService.BookCatalogServiceImpl;
-import com.book.demo.BookInventoryService.BookInventoryService;
+
+import com.book.demo.BookCatalogMicroservice.BookCatalogServiceImpl;
+import com.book.demo.BookInventoryMicroservice.BookInventoryService;
 
 @Service
 public class BookOrderService {

@@ -1,4 +1,4 @@
-package com.book.demo.BookInventoryService;
+package com.book.demo.BookInventoryMicroservice;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

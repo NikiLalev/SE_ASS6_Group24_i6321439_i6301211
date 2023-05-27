@@ -9,8 +9,10 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
+import com.book.demo.BookCatalogMicroservice.BookCatalogController;
+
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import com.book.demo.BookCatalogService.BookCatalogController;
 
 // @SpringBootTest
 // @WebMvcTest(BookCatalogController.class)

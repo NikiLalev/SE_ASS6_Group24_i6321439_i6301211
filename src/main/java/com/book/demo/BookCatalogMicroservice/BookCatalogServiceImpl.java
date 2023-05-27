@@ -1,4 +1,4 @@
-package com.book.demo.BookCatalogService;
+package com.book.demo.BookCatalogMicroservice;
 
 import java.util.ArrayList;
 import java.util.Arrays;

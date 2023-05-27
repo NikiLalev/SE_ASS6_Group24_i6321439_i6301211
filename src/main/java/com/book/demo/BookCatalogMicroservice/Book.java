@@ -1,4 +1,4 @@
-package com.book.demo.BookCatalogService;
+package com.book.demo.BookCatalogMicroservice;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

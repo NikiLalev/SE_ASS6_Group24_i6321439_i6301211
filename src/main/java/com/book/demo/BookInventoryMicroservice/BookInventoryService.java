@@ -1,9 +1,10 @@
-package com.book.demo.BookInventoryService;
+package com.book.demo.BookInventoryMicroservice;
 
 import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.book.demo.BookCatalogService.BookCatalogServiceImpl;
+
+import com.book.demo.BookCatalogMicroservice.BookCatalogServiceImpl;
 
 @Service
 public class BookInventoryService {

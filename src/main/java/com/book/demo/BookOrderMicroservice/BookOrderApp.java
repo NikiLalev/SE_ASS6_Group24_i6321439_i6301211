@@ -1,4 +1,4 @@
-package com.book.demo.BookOrderService;
+package com.book.demo.BookOrderMicroservice;
 
 import java.util.Collections;
 import org.springframework.boot.SpringApplication;
