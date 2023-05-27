@@ -32,7 +32,7 @@ public class BookCatalogController {
     
     @GetMapping("/book/{id}")
     public Book getBookByID(@PathVariable("id") int id) {
-        Book book = bookCatalogService.getByID(id);
+        Book book = bookCatalogService.getById(id);
         return book;
     }
 

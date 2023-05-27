@@ -54,7 +54,7 @@ public class BookCatalogControllerTest {
         // Act & Assert
         mockMvc.perform(MockMvcRequestBuilders.get("/catalog/book/{id}", 1))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(2))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(1))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.author").value("George Orwell"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.title").value("1984"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.publicationYear").value(1949));

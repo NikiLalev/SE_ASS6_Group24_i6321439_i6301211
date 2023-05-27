@@ -39,12 +39,12 @@ public class BookCatalogServiceImpl implements BookCatalogService{
     /**
      * Pre: an integer is given that corresponds to a book in the database
      * Post: the book that corresponds to the given id is returned
-     * @param ID - integer representing the id of the book we are looking for
+     * @param id - integer representing the id of the book we are looking for
      * @return - the book that correspond to the given id
      */
     @Override
-    public Book getByID(int ID) {
-        Book foundBook = getBookList().stream().filter(book -> book.getId() == ID).findAny().orElse(null);
+    public Book getById(int id) {
+        Book foundBook = getBookList().stream().filter(book -> book.getId() == id).findAny().orElse(null);
         return foundBook;
     }
 
@@ -59,19 +59,19 @@ public class BookCatalogServiceImpl implements BookCatalogService{
 
     /**
      * Pre: an integer is given that corresponds to a book in the database
-     * @param ID - the id of the book that needs to be deleted
+     * @param id - the id of the book that needs to be deleted
      * @return - return true if the book was successfully removed
      */
     @Override
-    public boolean deleteBook(int ID) {
-        Book bookToRemove = getByID(ID);
+    public boolean deleteBook(int id) {
+        Book bookToRemove = getById(id);
         return getBookList().remove(bookToRemove);
     }
 
     @Override
-    public boolean updateBook(Book book, int ID) {
-        if(ID == book.getId()) {
-            this.deleteBook(ID);
+    public boolean updateBook(Book book, int id) {
+        if(id == book.getId()) {
+            this.deleteBook(id);
             this.addBook(book);
             return true;
         } else {
