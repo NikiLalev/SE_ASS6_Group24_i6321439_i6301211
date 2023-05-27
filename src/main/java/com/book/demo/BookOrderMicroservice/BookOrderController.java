@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/order")
 public class BookOrderController {
     @Autowired
-    BookOrderService bookOrderService;
+    BookOrderServiceImpl bookOrderService;
     
     @PostMapping("/book")
     public void addOrderBookID(@RequestBody Order order) {
