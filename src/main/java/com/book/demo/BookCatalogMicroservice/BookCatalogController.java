@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import com.book.demo.BookInventoryMicroservice.BookInventoryService;
+
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 @RestController
@@ -25,8 +25,6 @@ public class BookCatalogController {
 
     @Autowired
     BookCatalogServiceImpl bookCatalogService;
-    @Autowired
-    BookInventoryService bookInventoryService;
 
     public BookCatalogController(WebClient.Builder webClientBuilder) {
          this.webClient = webClientBuilder.baseUrl("http://localhost:8080").build();
@@ -58,11 +56,13 @@ public class BookCatalogController {
      return book;
    }
 
-
    @PutMapping("/book/{id}")
    public Book updateBook(@RequestBody Book book, @PathVariable("id") int id) {
-        bookCatalogService.updateBook(book, id);
-        return book;
+        if(bookCatalogService.updateBook(book, id)) {
+          return book;
+        } else {
+          throw new IllegalArgumentException("Please try again");
+        }
    }
 
    @DeleteMapping("/book/{id}")

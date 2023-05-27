@@ -69,8 +69,14 @@ public class BookCatalogServiceImpl implements BookCatalogService{
     }
 
     @Override
-    public void updateBook(Book book, int ID) {
-        
+    public boolean updateBook(Book book, int ID) {
+        if(ID == book.getId()) {
+            this.deleteBook(ID);
+            this.addBook(book);
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }
