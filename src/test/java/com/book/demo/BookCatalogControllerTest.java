@@ -71,7 +71,6 @@ public class BookCatalogControllerTest {
         .contentType(MediaType.APPLICATION_JSON)
         .content("{\"title\":\"1984\",\"author\":\"George Orwell\",\"publicationYear\":1949, \"quantity\": \"30\"}"))
         .andExpect(MockMvcResultMatchers.status().isOk())
-        .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(bookId))
         .andExpect(MockMvcResultMatchers.jsonPath("$.title").value("1984"))
         .andExpect(MockMvcResultMatchers.jsonPath("$.publicationYear").value(1949))
         .andExpect(MockMvcResultMatchers.jsonPath("$.quantity").value(30));

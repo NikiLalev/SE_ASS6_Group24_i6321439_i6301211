@@ -20,6 +20,7 @@ public class BookInventoryServiceImpl implements BookInventoryService{
      */
     @Override
     public int getQuantityById(int id) {
+        //TO DO: handle invalid id case
         return idToQuantityMap.get(id);
     }
 
