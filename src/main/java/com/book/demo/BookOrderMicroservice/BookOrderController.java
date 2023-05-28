@@ -16,32 +16,29 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 @RequestMapping("/order")
 public class BookOrderController {
 
-    private final WebClient webClient;
-
     @Autowired
     BookOrderServiceImpl bookOrderService;
-
-    public BookOrderController(WebClient.Builder webClientBuilder) {
-        this.webClient = webClientBuilder.baseUrl("http://localhost:8080").build();
-   }
     
     @PostMapping("/book")
-    public void addOrderBookID(@RequestBody ObjectNode json) {
+    public boolean addOrderByBookId(@RequestBody ObjectNode json) {
         int bookId = json.get("bookId").asInt();
         int quantity = json.get("quantity").asInt();
 
         Order order = new Order(bookId, quantity);
+        String ctalogUrl = "http://localhost:8080/catalog/book/" + bookId;
+        String inventoryUrl = "http://localhost:8080/inventory/book/" + bookId;
+        WebClient webClient = WebClient.create();
 
         ResponseEntity<String> responseGetBook = 
           webClient.get()
-          .uri("/catalog/book/{id}", order.getBookId())
+          .uri(ctalogUrl)
           .retrieve()
           .toEntity(String.class)
           .block();
         
         ResponseEntity<Integer> responseGetQuantity = 
           webClient.get()
-          .uri("/inventory/book/{id}", order.getBookId())
+          .uri(inventoryUrl)
           .retrieve()
           .toEntity(Integer.class)
           .block();
@@ -51,16 +48,20 @@ public class BookOrderController {
         && responseGetQuantity.getStatusCode().is2xxSuccessful() 
         && quantity <= responseGetQuantity.getBody()) {
             bookOrderService.sendOrder(order);
+
             //update the quantity of the book
             webClient.put()
-                .uri("/inventory/book/{id}", bookId)
+                .uri(inventoryUrl)
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(BodyInserters.fromValue(-quantity))
                 .retrieve()
                 .toEntity(String.class)
                 .block();
+
+            return true;
         } else {
             System.out.println("Couldn't place order, please try again later");
+            return false;
         }
     }
 }

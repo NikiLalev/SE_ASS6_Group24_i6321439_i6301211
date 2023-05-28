@@ -23,13 +23,13 @@ public class BookInventoryController {
     }
 
     @PostMapping("/book/{id}")
-    public void setQuantityByID(@RequestBody int quantity, @PathVariable("id") int id) {
-        bookInventoryService.setQuantityById(id, quantity);
+    public boolean setQuantityByID(@RequestBody int quantity, @PathVariable("id") int id) {
+        return bookInventoryService.setQuantityById(id, quantity);
     }
 
     @PutMapping("/book/{id}")
-    public void updateQuantityByID(@RequestBody int quantity, @PathVariable("id") int id) {
-        bookInventoryService.updateQuantityById(id, quantity);
+    public boolean updateQuantityByID(@RequestBody int quantity, @PathVariable("id") int id) {
+        return bookInventoryService.updateQuantityById(id, quantity);
     }
 
 

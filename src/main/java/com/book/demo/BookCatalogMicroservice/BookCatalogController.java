@@ -21,14 +21,8 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 @RequestMapping("/catalog")
 public class BookCatalogController {
 
-     private final WebClient webClient;
-
     @Autowired
     BookCatalogServiceImpl bookCatalogService;
-
-    public BookCatalogController(WebClient.Builder webClientBuilder) {
-         this.webClient = webClientBuilder.baseUrl("http://localhost:8080").build();
-    }
     
     @GetMapping("/book/{id}")
     public Book getBookByID(@PathVariable("id") int id) {
@@ -50,14 +44,18 @@ public class BookCatalogController {
      Book book = new Book(title, author, publicationYear);
      bookCatalogService.addBook(book);
      //bookInventoryService.setQuantityByID(book.getId(), quantity); //call through port POST http://localhost:8080/inventory/book/{id} body - quantity
-     ResponseEntity<String> response = 
-          webClient.post()
-          .uri("/inventory/book/{id}", book.getId())
+     String inventoryUrl = "http://localhost:8080/inventory/book/" + book.getId();
+     WebClient webClient = WebClient.create();
+
+     //ResponseEntity<String> response = 
+     webClient.post()
+          .uri(inventoryUrl)
           .contentType(MediaType.APPLICATION_JSON)
           .body(BodyInserters.fromValue(quantity))
           .retrieve()
           .toEntity(String.class)
           .block();
+     
      return book;
    }
 
@@ -67,14 +65,10 @@ public class BookCatalogController {
           return book;
         } 
         return book;
-
-     //    else {
-     //      throw new IllegalArgumentException("Please try again");
-     //    }
    }
 
    @DeleteMapping("/book/{id}")
-   public void deleteBook(@PathVariable("id") int id) {
-        bookCatalogService.deleteBook(id); 
+   public boolean deleteBook(@PathVariable("id") int id) {
+        return bookCatalogService.deleteBook(id); 
    }
 }

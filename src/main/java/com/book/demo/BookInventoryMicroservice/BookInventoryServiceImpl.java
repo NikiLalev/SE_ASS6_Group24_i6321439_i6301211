@@ -10,6 +10,7 @@ public class BookInventoryServiceImpl implements BookInventoryService{
 
     public BookInventoryServiceImpl() {
         idToQuantityMap = new HashMap<Integer, Integer>();
+        idToQuantityMap.put(6, 30); //mock quantity for testing
     }
     
     /**
